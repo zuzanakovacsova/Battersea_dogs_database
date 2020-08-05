@@ -46,8 +46,6 @@ with open(csv_path,'r') as dog_file:
         dogtionary[row['NID']] = row#[1:-1]
 dog_file.close()
 
-
-
 # Find individual dogs and information about their ideal home location. We find it in the html file
 for number in animal_list:
     
@@ -56,8 +54,8 @@ for number in animal_list:
     dog_id = dog['nid']
 
     # If dogtionary contains this dog ---> Update
-    if dog_id in dogtionary.keys():
-        update_dog = dogtionary.get(dog_id)
+    if str(dog_id) in dogtionary.keys():
+        update_dog = dogtionary.get(str(dog_id))
         if dog['field_animal_rehomed'] != '':
             #print ('printing update dog:',update_dog)
             #setattr(update_dog, '')
