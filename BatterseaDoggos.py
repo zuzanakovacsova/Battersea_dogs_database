@@ -21,6 +21,7 @@ response_dogs = requests.get('https://www.battersea.org.uk/api/animals/dogs')
 # Get list of dogs
 all_dogs = response_dogs.json()
 #print (all_dogs)
+animal_list = list(all_dogs['animals'].keys())
 # This has all the info we want, except for ideal home location
 
 
@@ -48,8 +49,9 @@ dog_file.close()
 
 
 # Find individual dogs and information about their ideal home location. We find it in the html file
-for dog in all_dogs['animals']:
-  
+for number in animal_list:
+    
+    dog = all_dogs['animals'][number]
     # Update rehomed status
     dog_id = dog['nid']
 
@@ -71,7 +73,7 @@ for dog in all_dogs['animals']:
 
     else :
 
-        url = "https://www.battersea.org.uk" + (dog['path']) + "?&id=" + (dog['nid'])
+        url = "https://www.battersea.org.uk" + (dog['path']) + "?&id=" + str(dog['nid'])
         dog_result = requests.get(url)
         dog_html = dog_result.content
         soup = BeautifulSoup(dog_html)
