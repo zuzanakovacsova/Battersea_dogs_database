@@ -56,7 +56,7 @@ for number in animal_list:
     # If dogtionary contains this dog ---> Update
     if str(dog_id) in dogtionary.keys():
         update_dog = dogtionary.get(str(dog_id))
-        if dog['field_animal_rehomed'] != '':
+        if (dog['field_animal_rehomed'] != '' and update_dog['Date_rehomed'] == ''): #if it has been rehomed AND the dogtionary is empty
             #print ('printing update dog:',update_dog)
             #setattr(update_dog, '')
             update_dog['Rehomed'] = dog['field_animal_rehomed']
@@ -65,7 +65,7 @@ for number in animal_list:
             #update_dog['Rehomed'] = dog['field_animal_rehomed']
             #update_dog['Date_rehomed'] = date.today()
 
-        if dog['field_animal_reserved'] != '':
+        if (dog['field_animal_reserved'] != '' and update_dog['Date_reserved'] == ''):
             update_dog['Reserved'] = dog['field_animal_reserved']
             update_dog['Date_reserved'] = date.today()
 
@@ -94,9 +94,9 @@ for number in animal_list:
 
 
 
-print('Dogtionary:',dogtionary)
+#print('Dogtionary:',dogtionary)
 
-print ('Test')
+#print ('Test')
 # Insert into csv file
 try:
     with open(csv_path, 'w', newline='') as csvfile:
